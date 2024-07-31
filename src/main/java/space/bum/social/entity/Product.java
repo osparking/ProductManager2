@@ -3,6 +3,7 @@ package space.bum.social.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,5 +20,11 @@ public class Product {
   private float price;  
   public String getPriceStr() {
     return String.format("%,.0f\n", price);
+  }
+  
+  @Transient
+  private String priceStr;
+  public void setPriceStr(String priceStr) {
+    price = Float.parseFloat(priceStr);
   }
 }
