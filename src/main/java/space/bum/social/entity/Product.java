@@ -28,5 +28,16 @@ public class Product {
     priceStr = currency.format(price);
     return priceStr;
   }
+  public long getPriceNum() {
+    return price.stripTrailingZeros().longValue();
+  }
+  
+  @Transient
+  private long priceNum;
+  
+  public void setPriceNum(long priceNum) {
+    this.priceNum = priceNum;
+    this.price = BigDecimal.valueOf(priceNum);
+  }
   
 }
