@@ -45,4 +45,12 @@ public class AppController {
     model.addAttribute("product", service.get(id));
     return "edit_product";
   }
+  
+  @GetMapping("/delete/{id}")
+  public String deleteProduct(@PathVariable("id") String idStr,
+      Model model) {
+    long id = Long.parseLong(idStr);
+    service.delete(id);
+    return "redirect:/";
+  }
 }
