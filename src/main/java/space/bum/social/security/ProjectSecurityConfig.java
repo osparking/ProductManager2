@@ -23,9 +23,9 @@ public class ProjectSecurityConfig {
   // @formatter:off
   @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests(
+    http.formLogin(flc -> flc.loginPage("/login").permitAll())
+        .authorizeHttpRequests(
             (auth) -> auth.anyRequest().authenticated())
-        .formLogin(flc -> flc.permitAll())
         .logout(lo -> lo.permitAll());
 
     return http.build();
