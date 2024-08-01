@@ -25,7 +25,9 @@ public class ProjectSecurityConfig {
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.formLogin(flc -> flc.loginPage("/login").permitAll())
         .authorizeHttpRequests(
-            (auth) -> auth.anyRequest().authenticated())
+            (auth) -> auth
+            .requestMatchers("/register/**").permitAll()
+            .anyRequest().authenticated())
         .logout(lo -> lo.permitAll());
 
     return http.build();
